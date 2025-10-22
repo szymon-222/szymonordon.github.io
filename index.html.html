@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Szymon Ordon — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06060a;
+      --text: #eef6ff;
+      --muted: #9aa6b2;
+      --accent-1: #7c3aed;
+      --accent-2: #6d28d9;
+      --accent-3: #a78bfa;
+      --line: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+     /* === ANIMATED BACKGROUND === */
+    #bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at top left, #1a0933, #06060a);
+    }
+
+    /* === HEADER === */
+    header {
+      position: sticky; top: 0;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+    header .brand {
+      font-weight: 800;
+      font-size: 22px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+    header nav { display: flex; gap: 24px; }
+    header a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .3s;
+    }
+    header a:hover { color: var(--accent-3); }
+
+    header {
+      position: sticky; top: 0;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    header .brand { font-weight: 700; font-size: 18px; }
+    header nav { display: flex; gap: 18px; }
+    header a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    header .cta a {
+      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      padding: 8px 16px; border-radius: 999px;
+      color: #fff; font-weight: 700;
+      box-shadow: 0 4px 16px rgba(124,58,237,.3);
+    }
+
+    /* === HERO === */
+    .hero {
+      min-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 80px 20px;
+      flex-direction: column;
+    }
+    .hero h1 {
+      font-size: 80px; font-weight: 900;
+      font-family: Poppins, sans-serif;
+      color: var(--accent-3); margin-bottom: 20px;
+      white-space: nowrap;
+      border-right: 4px solid var(--accent-3);
+      width: 0; overflow: hidden;
+      animation: typing 2.8s steps(22,end) forwards, blink .8s infinite;
+    }
+    @keyframes typing { to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 700px;
+      font-size: 20px;
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+    /* === BUTTONS === */
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px; font-weight: 700;
+      border: none; cursor: pointer;
+      font-family: Poppins, sans-serif;
+      font-size: 16px;
+      transition: transform .2s, box-shadow .3s;
+      display: inline-block;
+    }
+    .btn.primary {
+      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(124,58,237,.3);
+    }
+    .btn.primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(124,58,237,.6);
+    }
+    .btn.ghost {
+      border: 2px solid var(--accent-1);
+      background: transparent;
+      color: var(--accent-1);
+    }
+    .btn.ghost:hover {
+      background: var(--accent-1);
+      color: #fff;
+      transform: translateY(-3px) scale(1.05);
+    }
+    /* === SECTIONS === */
+    /* === SECTIONS === */
+    section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+    section h2 { font-size: 36px; margin-bottom: 30px; text-align: center; }
+
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-top: 40px;
+}
+.about-photo img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 2px solid var(--line);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+.about-text p {
+  color: var(--muted);
+  margin-bottom: 18px;
+  line-height: 1.7;
+  font-size: 17px;
+}
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.highlight {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform .3s;
+}
+.highlight:hover { transform: translateY(-6px); }
+.highlight h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--accent-3);
+}
+
+    /* === STATS (under about) === */
+    .stats {
+      margin-top: 40px; display: flex; justify-content: center; gap: 20px;
+    }
+    .stat {
+      flex: 1; max-width: 250px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px; padding: 20px;
+      text-align: center; border: 1px solid var(--line);
+      transition: transform .3s;
+    }
+    .stat:hover { transform: translateY(-6px); }
+    .stat .num { font-size: 40px; font-weight: 800; color: var(--accent-3); }
+    .stat .label { color: var(--muted); margin-top: 6px; }
+
+    /* === PROJECTS === */
+    .projects { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .project {
+      border-radius: 16px; overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .project:hover { transform: translateY(-8px); box-shadow: 0 16px 32px rgba(0,0,0,.4); }
+    .project img { width: 100%; height: 180px; object-fit: cover; }
+    .project-body { padding: 16px; }
+    .project-body h3 { margin-bottom: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag {
+      font-size: 12px; padding: 4px 10px;
+      border-radius: 999px; background: rgba(167,139,250,0.15);
+    }
+
+    /* === SKILLS === */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 20px; }
+    .skill {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px; border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      transition: transform .3s;
+    }
+    .skill:hover { transform: translateY(-6px); }
+    .skill-icon {
+      font-size: 40px;
+    }
+    .skill-name { font-size: 20px; font-weight: 700; }
+
+    /* === CONTACT === */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 20px; text-align: center;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line); border-radius: 14px;
+      padding: 24px; transition: transform .3s;
+    }
+    .contact-card:hover { transform: translateY(-6px); }
+    .contact-icon { font-size: 36px; margin-bottom: 12px; color: var(--accent-3); }
+    .contact-card a { color: var(--accent-1); font-weight: 600; }
+
+    /* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 50px 20px;
+  border-top: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  color: var(--muted);
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+footer a {
+  color: var(--accent-3);
+  text-decoration: none;
+  font-weight: 600;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <header>
+    <div class="brand">Szymon Ordon</div>
+    <nav>
+      <a href="#o-mnie">O mnie</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#skills">Umiejętności</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Szymon Ordon</h1>
+    <p>Jestem pasjonatem informatyki, który łączy kreatywność z technologią.  
+       Tworzę nowoczesne aplikacje, stale uczę się nowych narzędzi i dążę do perfekcji w każdym projekcie.</p>
+  </section>
+
+  <section id="o-mnie">
+    <h2>O mnie</h2>
+    <div class="about-wrapper">
+      <div class="about-photo">
+        <img src="https://avatars.githubusercontent.com/u/9919?v=4" alt="Szymon Ordon">
+      </div>
+      <div class="about-text">
+        <p>
+          Nazywam się <strong>Szymon Ordon</strong> ukończyłem technikum o profilu <strong>technik programista</strong>,  
+          zdobywając tytuł zawodowy technika. Obecnie studiuję <strong>informatykę na Politechnice Rzeszowskiej</strong>,  
+          rozwijając swoją wiedzę z zakresu programowania, architektury systemów i technologii webowych.
+        </p>
+        <p>
+          Podczas praktyk zawodowych miałem okazję pracować w środowisku biurowym, tworząc oraz testując  
+          wewnętrzne aplikacje użytkowe. Poza tym realizowałem <strong>własne projekty</strong> – od prostych stron po  
+          małe aplikacje pisane w <strong>Java, HTML i CSS</strong>. Ostatnio zgłębiam <strong>Pythona</strong>, bo lubię  
+          poszerzać horyzonty i uczyć się nowych technologii.
+        </p>
+        <p>
+          Jestem osobą ambitną, która szybko się uczy i dąży do nieustannego rozwoju.  
+          W pracy cenię sobie <strong>czystość kodu, przejrzystość interfejsu i realną użyteczność projektów</strong>.
+        </p>
+
+        <div class="about-highlights">
+          <div class="highlight">
+            <h3>💡 Technologie</h3>
+            <p>Java, HTML, CSS, oraz Python wciąż rozwijam swój stack.</p>
+          </div>
+          <div class="highlight">
+            <h3>🚀 Projekty</h3>
+            <p>Tworzę aplikacje z pasją od koncepcji po wdrożenie.</p>
+          </div>
+          <div class="highlight">
+            <h3>📈 Rozwój</h3>
+            <p>Nieustannie uczę się nowych technologii, by być coraz lepszym.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">1+</div>
+      <div class="label">Rok doświadczenia</div>
+    </div>
+    <div class="stat">
+      <div class="num">1</div>
+      <div class="label">Projektów</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="label">Główne technologie</div>
+    </div>
+  </div>
+</section>
+
+  <section id="projekty">
+    <h2>Projekty</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?q=80" alt="">
+        <div class="project-body">
+          <h3>Smart Home Dashboard</h3>
+          <p>Panel sterowania inteligentnym domem: realtime + responsywne UI.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">TS</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80" alt="">
+        <div class="project-body">
+          <h3>E-commerce Starter</h3>
+          <p>Sklep online: katalog, koszyk, checkout.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Stripe</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Moje umiejętności</h2>
+    <div class="skills">
+      <div class="skill"><div class="skill-icon">🛡</div><div class="skill-name">HTML</div></div>
+      <div class="skill"><div class="skill-icon">💻</div><div class="skill-name">JavaScript</div></div>
+      <div class="skill"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
+      <div class="skill"><div class="skill-icon">🌐</div><div class="skill-name">Node.js</div></div>
+      <div class="skill"><div class="skill-icon">📱</div><div class="skill-name">React Native</div></div>
+      <div class="skill"><div class="skill-icon">🎨</div><div class="skill-name">CSS / UI</div></div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <a href="mailto:szymon.ordon@wp.pl">szymon.ordon@wp.pl</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💻</div>
+        <a href="https://github.com/szymon-222" target="_blank">GitHub</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🔗</div>
+        <a href="https://www.linkedin.com/in/szymon-ordon-66492733b" target="_blank">LinkedIn</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🐦</div>
+        <a href="https://x.com/Szymon50322683" target="_blank">X (Twitter)</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Szymon Ordon — Stworzono z pasją 💜 |  
+    <a href="#kontakt">Kontakt</a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // === BACKGROUND PARTICLES ===
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+    let w, h, particles = [];
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+    class Particle {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+      }
+      update() {
+        this.x += this.speedX; this.y += this.speedY;
+        if(this.x<0 || this.x>w) this.speedX*=-1;
+        if(this.y<0 || this.y>h) this.speedY*=-1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(167,139,250,0.7)";
+        ctx.fill();
+      }
+    }
+    function initParticles() {
+      particles = [];
+      for(let i=0;i<80;i++) particles.push(new Particle());
+    }
+    function animate() {
+      ctx.clearRect(0,0,w,h);
+      particles.forEach(p=>{p.update(); p.draw();});
+      requestAnimationFrame(animate);
+    }
+    initParticles();
+    animate();
+  </script>
+</body>
+</html>
